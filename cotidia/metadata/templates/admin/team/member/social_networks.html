@@ -1,0 +1,26 @@
+{% load admin_list_tags %}<fieldset class="table-view">
+    <legend>Social networks</legend>
+    <table class="table table--clickable table--admin-mobile-view">
+        <thead>
+            <tr>
+                <th>Network</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in object.social_networks %}
+            <tr onclick="window.location = '{% get_child_admin_url 'team' 'membersocial' 'update' object n %}'">
+                <td>{{n.network_label}}</td>
+                <td><a href="{{n.url}}" target="_blank">{{n.url}}</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No social network.</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2"><a href="{% get_child_admin_url 'team' 'membersocial' 'add' object %}" class="btn btn--create btn--small">Add a social network</a></td>
+            </tr>
+        </tbody>
+    </table>
+</fieldset>

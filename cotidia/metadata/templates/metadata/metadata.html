@@ -1,0 +1,30 @@
+<meta property="og:url" content="{{metadata.og_url}}" />
+<meta property="og:type" content="{{metadata.og_type}}" />
+<meta property="og:title" content="{{metadata.og_title}}" />
+<meta property="og:description" content="{{metadata.og_description}}" />
+<meta property="og:image" content="{{metadata.og_image.url}}" />
+
+<meta name="twitter:card" content="{{metadata.twitter_card}}">
+<meta name="twitter:site" content="{{metadata.twitter_site}}">
+<meta name="twitter:title" content="{{metadata.twitter_title}}">
+<meta name="twitter:description" content="{{metadata.twitter_description}}">
+<meta name="twitter:creator" content="{{metadata.twitter_creator}}">
+<meta name="twitter:image:src" content="{{metadata.twitter_image_src.url}}">
+<meta name="twitter:image:alt" content="{{metadata.twitter_image_alt}}">
+<meta name="twitter:domain" content="{{metadata.twitter_domain}}">
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "{{metadata.google_type}}",
+  "name": "{{metadata.google_name}}",
+  "url": "{{metadata.google_url}}",
+  "logo": "{{metadata.google_logo}}"
+  "sameAs": [
+    {% for s in metadata.social_networks %}
+        '{{s.url}}'{% if not forloop.last %},
+        {% endif %}
+    {% endfor %}
+  ]
+}
+</script>
