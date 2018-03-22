@@ -1,9 +1,7 @@
 from django.urls import path, include
 
-app_name = "team"
+app_name = "metadata"
+
 urlpatterns = [
-    path('member/',
-            include("cotidia.metadata.urls.admin.members")),
-    path('department/',
-            include("cotidia.metadata.urls.admin.department"))
-    ]
+    path('', include("cotidia.metadata.urls.admin.metadata")),
+]

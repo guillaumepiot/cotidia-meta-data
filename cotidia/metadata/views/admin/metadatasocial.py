@@ -5,7 +5,7 @@ from cotidia.admin.views import (
 )
 
 from cotidia.metadata.models import MetaData, MetaDataSocial
-from cotidia.metadata.forms.admin.membersocial import (
+from cotidia.metadata.forms.admin.metadatasocial import (
     MetaDataSocialAddForm,
     MetaDataSocialUpdateForm,
 )
