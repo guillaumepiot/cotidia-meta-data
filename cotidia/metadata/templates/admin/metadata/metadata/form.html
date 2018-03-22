@@ -1,0 +1,37 @@
+{% extends "admin/generic/page/form.html" %}{% load i18n admin_toolbar_tags admin_list_tags %}
+
+{% block toolbar %}
+<span class="toolbar__breadcrumbs">
+    {% if next %}
+        <a href="{{next}}">Back</a>
+        &nbsp;<span class="fa fa-angle-right"></span>&nbsp;
+    {% endif %}
+    {% if object %}
+        {{object}}
+        &nbsp;<span class="fa fa-angle-right"></span>&nbsp;
+        {% blocktrans with verbose_name as verbose_name %}
+            Edit {{verbose_name}}
+        {% endblocktrans %}
+    {% else %}
+        {% blocktrans with verbose_name as verbose_name %}
+            Add {{verbose_name}}
+        {% endblocktrans %}
+    {% endif %}
+</span>
+{{form.errors}}
+{% endblock toolbar %}
+
+{% block form_actions %}
+<div class="form__actions">
+    <div class="form__actions-inner">
+        <button type="submit" class="btn btn--primary">
+            {% trans "Save" %}
+        </button>
+        {% if next %}
+            <a href="{{next}}" class="btn btn--cancel pull-right">
+                {% trans "Back" %}
+            </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock form_actions %}

@@ -1,30 +1,34 @@
-<meta property="og:url" content="{{metadata.og_url}}" />
-<meta property="og:type" content="{{metadata.og_type}}" />
-<meta property="og:title" content="{{metadata.og_title}}" />
-<meta property="og:description" content="{{metadata.og_description}}" />
-<meta property="og:image" content="{{metadata.og_image.url}}" />
+{% if metadata.meta_title %}<meta name="title" content="{{metadata.meta_title}}" />{% endif %}
+{% if metadata.meta_description %}<meta name="description" content="{{metadata.meta_description}}" />{% endif %}
+{% if metadata.meta_keywords %}<meta name="keywords" content="{{metadata.meta_keywords}}" />{% endif %}
 
-<meta name="twitter:card" content="{{metadata.twitter_card}}">
-<meta name="twitter:site" content="{{metadata.twitter_site}}">
-<meta name="twitter:title" content="{{metadata.twitter_title}}">
-<meta name="twitter:description" content="{{metadata.twitter_description}}">
-<meta name="twitter:creator" content="{{metadata.twitter_creator}}">
-<meta name="twitter:image:src" content="{{metadata.twitter_image_src.url}}">
-<meta name="twitter:image:alt" content="{{metadata.twitter_image_alt}}">
-<meta name="twitter:domain" content="{{metadata.twitter_domain}}">
+{% if metadata.url %}<meta property="og:url" content="{{metadata.url}}" />{% endif %}
+{% if metadata.og_type %}<meta property="og:type" content="{{metadata.og_type}}" />{% endif %}
+{% if metadata.og_title %}<meta property="og:title" content="{{metadata.og_title}}" />{% endif %}
+{% if metadata.og_description %}<meta property="og:description" content="{{metadata.og_description}}" />{% endif %}
+{% if metadata.og_image_url %}<meta property="og:image" content="{{metadata.og_image_url}}" />{% endif %}
+
+{% if metadata.twitter_card %}<meta name="twitter:card" content="{{metadata.twitter_card}}">{% endif %}
+{% if metadata.twitter_site %}<meta name="twitter:site" content="{{metadata.twitter_site}}">{% endif %}
+{% if metadata.twitter_title %}<meta name="twitter:title" content="{{metadata.twitter_title}}">{% endif %}
+{% if metadata.twitter_description %}<meta name="twitter:description" content="{{metadata.twitter_description}}">{% endif %}
+{% if metadata.twitter_creator %}<meta name="twitter:creator" content="{{metadata.twitter_creator}}">{% endif %}
+{% if metadata.twitter_image_src_url %}<meta name="twitter:image:src" content="{{metadata.twitter_image_src_url}}">{% endif %}
+{% if metadata.twitter_image_alt %}<meta name="twitter:image:alt" content="{{metadata.twitter_image_alt}}">{% endif %}
+{% if metadata.url %}<meta name="twitter:domain" content="{{metadata.url}}">{% endif %}
 
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
-  "@type": "{{metadata.google_type}}",
-  "name": "{{metadata.google_name}}",
-  "url": "{{metadata.google_url}}",
-  "logo": "{{metadata.google_logo}}"
-  "sameAs": [
+  "@context": "http://schema.org"
+{% if metadata.google_type %}  ,"@type": "{{metadata.google_type}}"{% endif %}
+{% if metadata.google_name %}  ,"name": "{{metadata.google_name}}"{% endif %}
+{% if metadata.url %}  ,"url": "{{metadata.url}}"{% endif %}
+{% if metadata.google_logo_url %} ,"logo": "{{metadata.google_logo_url}}"{% endif %}
+{% if metadata.social_networks %} ,"sameAs": [
     {% for s in metadata.social_networks %}
         '{{s.url}}'{% if not forloop.last %},
         {% endif %}
     {% endfor %}
-  ]
+  ]{% endif %}
 }
 </script>

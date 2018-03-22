@@ -22,4 +22,29 @@ INSTALLED_APPS=[
 ]
 ```
 
+Add meta data admin to urls:
+
+```
+urlpatterns = [
+    path('admin/meta-data/', include('cotidia.metadata.urls.admin', namespace='metadata-admin')),
+]
+
 ## Template tags
+
+### Get meta data instance
+
+Return the instance meta data for a given object, return None if it doesn't exist.
+
+```html
+{% load metadata_tags %}
+{% get_meta_data object as object_metadata %}
+```
+
+### Print meta data
+
+Output the html for the meta data directly on the template.
+
+```html
+{% load metadata_tags %}
+{% print_meta_data object %}
+```
