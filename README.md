@@ -37,14 +37,5 @@ Return the instance meta data for a given object, return None if it doesn't exis
 
 ```html
 {% load metadata_tags %}
-{% get_meta_data object as object_metadata %}
-```
-
-### Print meta data
-
-Output the html for the meta data directly on the template.
-
-```html
-{% load metadata_tags %}
-{% print_meta_data object %}
+{% get_meta_data object as metadata %}
 ```
