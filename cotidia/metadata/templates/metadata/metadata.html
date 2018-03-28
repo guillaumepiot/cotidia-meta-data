@@ -1,6 +1,8 @@
 {% if metadata.meta_description %}<meta name="description" content="{{metadata.meta_description}}" />{% endif %}
 {% if metadata.meta_keywords %}<meta name="keywords" content="{{metadata.meta_keywords}}" />{% endif %}
 
+<meta property="fb:app_id" content="{{METADATA_FACEBOOK_APP_ID}}" />
+
 {% if metadata.url %}<meta property="og:url" content="{{metadata.url}}" />{% endif %}
 {% if metadata.og_type %}<meta property="og:type" content="{{metadata.og_type}}" />{% endif %}
 {% if metadata.og_title %}<meta property="og:title" content="{{metadata.og_title}}" />{% endif %}

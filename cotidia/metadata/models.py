@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from cotidia.core.models import BaseModel
 from cotidia.admin.models import AbstractOrderable
+from cotidia.core.fields import PublicFileField
 
 
 class MetaData(AbstractOrderable, BaseModel):
@@ -41,7 +42,7 @@ class MetaData(AbstractOrderable, BaseModel):
     og_type = models.CharField(max_length=50, choices=OG_TYPES, null=True, blank=True)
     og_title = models.CharField(max_length=50, null=True, blank=True)
     og_description = models.TextField(null=True, blank=True)
-    og_image = models.ImageField(upload_to='metadata', null=True, blank=True, help_text='Recommended size: 1200 x 630 px')
+    og_image = PublicFileField(upload_to='metadata', null=True, blank=True, help_text='Recommended size: 1200 x 630 px')
 
     # Twitter card
     twitter_card = models.CharField(max_length=50, choices=TWITTER_CARD_TYPES, help_text='Type of Twitter card')
@@ -49,13 +50,13 @@ class MetaData(AbstractOrderable, BaseModel):
     twitter_title = models.CharField(max_length=50, help_text='Title of the card', null=True, blank=True)
     twitter_description = models.TextField(null=True, blank=True)
     twitter_creator = models.CharField(max_length=50, help_text='Twitter handle. E.g. @cotidia', null=True, blank=True)
-    twitter_image_src = models.ImageField(upload_to='metadata', null=True, blank=True, help_text='Recommended size: 600 x 335 px')
+    twitter_image_src = PublicFileField(upload_to='metadata', null=True, blank=True, help_text='Recommended size: 600 x 335 px')
     twitter_image_alt = models.CharField(max_length=255, null=True, blank=True)
 
     # Google search data
     google_type = models.CharField(max_length=50, choices=GOOGLE_TYPES, null=True, blank=True)
     google_name = models.CharField(max_length=50, null=True, blank=True)
-    google_logo = models.ImageField(upload_to='metadata', null=True, blank=True, help_text='Recommended size: 112 x 112 px (min)')
+    google_logo = PublicFileField(upload_to='metadata', null=True, blank=True, help_text='Recommended size: 112 x 112 px (min)')
 
     class Meta:
         verbose_name = 'MetaData'

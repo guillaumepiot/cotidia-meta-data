@@ -12,6 +12,12 @@ $ pip install -e git+git@code.cotidia.com:cotidia/meta-data.git#egg=cotidia-meta
 
 ## Settings
 
+Set Facebook app id:
+
+```python
+METADATA_FACEBOOK_APP_ID = "1234"
+```
+
 Add `cotidia.metadata` to your INSTALLED_APPS:
 
 ```python
@@ -38,4 +44,20 @@ Return the instance meta data for a given object, return None if it doesn't exis
 ```html
 {% load metadata_tags %}
 {% get_meta_data object as metadata %}
+```
+
+## Context processor
+
+```python
+TEMPLATES = [
+    {
+        ...
+        'OPTIONS': {
+            'context_processors': [
+            ...
+                'cotidia.metadata.context_processor.metadata_settings',
+            ],
+        },
+    },
+]
 ```
