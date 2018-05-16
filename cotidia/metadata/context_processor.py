@@ -1,4 +1,4 @@
-from django.conf import settings
+from cotidia.metadata.conf import settings
 
 
 def metadata_settings(request):
