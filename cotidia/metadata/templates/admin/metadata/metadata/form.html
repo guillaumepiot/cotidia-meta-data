@@ -1,25 +1,25 @@
 {% extends "admin/generic/page/form.html" %}{% load i18n admin_toolbar_tags admin_list_tags %}
 
-{% block toolbar %}
-<span class="toolbar__breadcrumbs">
-    {% if next %}
-        <a href="{{next}}">Back</a>
-        &nbsp;<span class="fa fa-angle-right"></span>&nbsp;
-    {% endif %}
-    {% if object %}
-        {{object}}
-        &nbsp;<span class="fa fa-angle-right"></span>&nbsp;
-        {% blocktrans with verbose_name as verbose_name %}
-            Edit {{verbose_name}}
-        {% endblocktrans %}
-    {% else %}
-        {% blocktrans with verbose_name as verbose_name %}
-            Add {{verbose_name}}
-        {% endblocktrans %}
-    {% endif %}
-</span>
-{{form.errors}}
-{% endblock toolbar %}
+{% block content_title %}
+<a href="{% get_admin_url parent_app_label parent_model_name 'detail' parent %}">{{parent}}</a>
+&nbsp;<span class="fa fa-angle-right"></span>&nbsp;
+{% if object %}
+    {{object}}
+{% else %}
+    {% blocktrans with verbose_name as verbose_name %}
+        Add {{verbose_name}}
+    {% endblocktrans %}
+{% endif %}
+{% endblock content_title %}
+
+{% block content_actions %}
+{% if next %}
+    <a href="{{next}}" class="btn btn--small btn--cancel">
+        <span class="fa fa-chevron-left"></span>
+        Back
+    </a>
+{% endif %}
+{% endblock content_actions %}
 
 {% block form_actions %}
 <div class="form__actions">

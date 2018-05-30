@@ -61,3 +61,12 @@ TEMPLATES = [
     },
 ]
 ```
+
+## CMS settings
+
+We then need to enable meta data in the CMS:
+
+```python
+
+CMS_ENABLE_META_DATA = True
+```

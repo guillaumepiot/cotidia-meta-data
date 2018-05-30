@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.contrib.contenttypes.models import ContentType
 
 from cotidia.admin.views import (
     AdminCreateView,
@@ -20,7 +21,17 @@ class MetaDataCreate(AdminCreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['next'] = self.request.GET.get('next')
+        ct = ContentType.objects.get_for_id(self.content_type_id)
+        parent = ct.get_object_for_this_type(pk=self.object_id)
+        context['parent'] = parent.parent
+        context['parent_app_label'] = parent.parent._meta.app_label
+        context['parent_model_name'] = parent.parent._meta.model_name
         return context
+
+    def get(self, *args, **kwargs):
+        self.content_type_id = kwargs.get('content_type_id')
+        self.object_id = kwargs.get('object_id')
+        return super().get(*args, **kwargs)
 
     def post(self, *args, **kwargs):
         self.content_type_id = kwargs.get('content_type_id')
@@ -53,6 +64,11 @@ class MetaDataUpdate(AdminUpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['next'] = self.request.GET.get('next')
+        ct = ContentType.objects.get_for_id(self.object.content_type_id)
+        parent = ct.get_object_for_this_type(pk=self.object.object_id)
+        context['parent'] = parent.parent
+        context['parent_app_label'] = parent.parent._meta.app_label
+        context['parent_model_name'] = parent.parent._meta.model_name
         return context
 
     def build_success_url(self):
