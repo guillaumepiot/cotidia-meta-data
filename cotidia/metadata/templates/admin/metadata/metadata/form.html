@@ -1,8 +1,10 @@
 {% extends "admin/generic/page/form.html" %}{% load i18n admin_toolbar_tags admin_list_tags %}
 
 {% block content_title %}
-<a href="{% get_admin_url parent_app_label parent_model_name 'detail' parent %}">{{parent}}</a>
+{% if next %}
+<a href="{{next}}">{{parent}}</a>
 &nbsp;<span class="fa fa-angle-right"></span>&nbsp;
+{% endif %}
 {% if object %}
     {{object}}
 {% else %}
@@ -21,17 +23,10 @@
 {% endif %}
 {% endblock content_actions %}
 
-{% block form_actions %}
-<div class="form__actions">
-    <div class="form__actions-inner">
-        <button type="submit" class="btn btn--primary">
-            {% trans "Save" %}
-        </button>
-        {% if next %}
-            <a href="{{next}}" class="btn btn--cancel pull-right">
-                {% trans "Back" %}
-            </a>
-        {% endif %}
-    </div>
-</div>
-{% endblock form_actions %}
+{% block form_actions_right %}
+{% if next %}
+    <a href="{{next}}" class="btn btn--cancel pull-right">
+        {% trans "Back" %}
+    </a>
+{% endif %}
+{% endblock form_actions_right %}
